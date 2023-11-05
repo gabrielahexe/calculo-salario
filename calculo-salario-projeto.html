@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var menu;
+        var salarioBase;
+
+        do {
+            menu = parseInt(prompt("O que você deseja calcular?\n\nMenu de opções:\n1. Novo Salário \n2. Férias \n3. Décimo terceiro \n4. Sair \nDigite a opção desejada."));
+            if (menu !== 1 && menu !== 2 && menu !== 3 && menu !== 4) {
+                window.alert("Opção Inválida!\nPor favor, escolha as opções do menu digitando números de 1 a 4.");
+            }
+        } while (menu !== 1 && menu !== 2 && menu !== 3 && menu !== 4);
+        
+        function obterSalarioBase() {
+            while(true) {
+                salarioBase = parseFloat(prompt("Digite o seu salário base:"));
+
+                if (!isNaN(salarioBase) && salarioBase > 0) {
+                    return salarioBase;
+                }
+
+                window.alert("Salário inválido! Por favor, insira um valor numérico positivo.");
+            }
+        }
+        
+        if (menu === 1) {
+            salarioBase = obterSalarioBase();
+        
+            if (salarioBase <= 1200) {
+                var salarioNovo = salarioBase + salarioBase * 0.15;
+            } else if (salarioBase > 1200 && salarioBase <= 2400) {
+                salarioNovo = salarioBase + salarioBase * 0.10;
+            } else {
+                salarioNovo = salarioBase + salarioBase *0.05;
+            }
+
+            window.alert(`O seu novo salário é de ${salarioNovo.toFixed(2)}`)
+            document.write("Aperte F5 para recomeçar.");    
+        }
+        
+        if (menu === 2) {
+            salarioBase = obterSalarioBase();
+        
+            var salarioFerias = salarioBase + salarioBase / 3;
+            window.alert("O valor de suas férias é de: R$" + salarioFerias.toFixed(2));
+            document.write("Aperte F5 para recomeçar.");    
+        }
+        
+        if (menu === 3) {
+            salarioBase = obterSalarioBase();
+        
+            var mes = parseInt(prompt("Digite a quantidade de meses trabalhados:"));
+        
+            while(isNaN(mes) || mes < 1 || mes > 12) {
+                window.alert("Caracteres Inválidos.\nPor favor, tente novamente.\n\nUtilize apenas números de 1 a 12.");
+                mes = parseInt(prompt("Digite a quantidade de meses trabalhados:"));
+            }
+                
+            var salarioDecimo = (salarioBase * mes) / 12;
+            window.alert("O valor do seu décimo terceiro é de: R$" + salarioDecimo.toFixed(2));    
+            document.write("Aperte F5 para recomeçar.");
+            
+        }
+        
+        if (menu === 4) {
+            window.alert("Você encerrou o programa.");
+            document.write("Aperte F5 para recomeçar.");
+        }
+        
+        </script>
+</body>
+</html>
